@@ -19,7 +19,7 @@ async function fetchAllData() {
                 title: cells[4]?.v || "",
                 description: cells[5]?.v || "",
                 price: Number(cells[6]?.v) || 0,
-                discount: Number(cells[7]?.v) || 0,
+                beforDiscount: Number(cells[7]?.v) || 0,
                 category: cells[8]?.v || ""
             };
         });
@@ -211,6 +211,9 @@ function card(product) {
                     </h5>
                     <p class="card-text h5 text-info font-weight-bold mb-3">
                         ${product.price} <small style="font-size: 12px;">EGP</small>
+                    </p>
+                    <p class="card-text mb-3" style="text-decoration:line-through; color: gray;">
+                        ${product.beforDiscount} EGP
                     </p>
                 </div>
 
