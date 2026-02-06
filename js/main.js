@@ -203,25 +203,27 @@ function card(product) {
                      style="width: 100%; height: 100%; object-fit: cover;">
             </div>
 
-            <div class="card-body">
+            <div class="card-body d-flex flex-column justify-content-between">
                 <div>
                     <h5 class="card-title search-title text-dark mb-1" 
                         style="font-size: 1.1rem; font-weight: 600; min-height: 45px; overflow: hidden;">
                         ${product.title}
                     </h5>
-                    <p class="card-text h5 text-info font-weight-bold mb-3">
+                    <p class="card-text h5 text-info font-weight-bold mb-1">
                         ${product.price} <small style="font-size: 12px;">EGP</small>
                     </p>
-                    <p class="card-text mb-3" style="text-decoration:line-through; color: gray;">
-                        ${product.beforDiscount} EGP
-                    </p>
+                    
+                    ${product.beforDiscount > 0 ? `
+                        <p class="card-text mb-3" style="text-decoration: line-through; color: gray; font-size: 0.9rem;">
+                            ${product.beforDiscount} EGP
+                        </p>` : '<div class="mb-3" style="height: 1.2rem;"></div>'}
                 </div>
-
+                     
                 <div class="print">
-                    <button class="btn btn-info w-100 shadow-sm" style="border-radius: 12px;" 
+                    <button class="btn btn-info w-100 shadow-sm text-white" style="border-radius: 12px;" 
                             onclick="addToCart(${product.id})">
                         <span>Add To Cart</span>
-                        <i class="fa-solid fa-cart-plus"></i>
+                        <i class="fa-solid fa-cart-plus ml-1"></i>
                     </button>
                 </div>
             </div>
@@ -229,7 +231,6 @@ function card(product) {
     </div>
     `;
 }
-
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
