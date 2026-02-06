@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="icon" href="imgs/unnamed.jpg" type="image/jpg">
+        <title>Cart Page</title>
+        <style>
+        footer{
+            margin-top:50px
+        }
+        @media(max-width:400px){
+            footer{
+                margin-top:200px
+            }
+            .pill{
+                height: 620px;
+            }
+        }
+    </style>
+    </head>
+    <body class="text-dark bg-light" style="min-height: 100vh;">
+        <div id="loader-wrapper">
+            <div class="loader-container">
+                <div class="neon-ring">
+                    <span></span>
+                </div>
+                <div class="loading-text">Loading...</div>
+            </div>
+        </div>
+
+        <!-- start navbar -->
+        <div id="navbar"
+            class="sticky-top  navbar-light bg-light text-dark p-0">
+
+        </div>
+        <!-- end navbar -->
+        <div class="cartProduct container">
+            <div class="mt-1  row bg-light p-1 ">
+                <div class="cartcontent  col-lg-6 col-md-12 col-sm-12 "
+                    id="cartcontent"
+                    style=" min-width:344px; overflow-y: auto; scrollbar-width:none;max-height: 620px; ">
+
+                </div>
+
+                <div class="pill col-lg-6 col-md-12 col-sm-12 text-info "
+                    style=" height:600px;border-radius: 20px; border:solid black 2px">
+                    <p class=" text-light text-center mt-3    badge bg-info"
+                        style=" background-color: green;  font-size: 2em; "
+                        id="total"></p>
+                    <h5 class="badge bg-info text-light">غير شامل مصاريف
+                        الشحن</h5>
+
+                    <form
+                        action="https://docs.google.com/forms/d/e/1FAIpQLSft8lV4zJn6KAs6JCsWMwie7SvkA8ZOtjtvJOZAjjtLbSgCqg/formResponse"
+                        method="post" id="myForm" target="_blank">
+
+                        <label for="name" class="h4 ">Name :</label>
+                        <br>
+                        <input type="text" name="entry.1707612953" id="name"
+                            placeholder="Full Name" class="form-control"
+                            required>
+                        <br>
+
+                        <label for="phone" class="h4">Phone</label>
+                        <br>
+                        <input type="number" name="entry.1043765808" id="phone"
+                            placeholder="Phone Number" class="form-control"
+                            required>
+                        <br>
+
+                        <label for="address" class="h4">Address</label>
+                        <br>
+                        <input type="text" name="entry.1022079543" id="address"
+                            placeholder="Your Address" class="form-control"
+                            required>
+                        <br>
+
+                        <label class="h4 pb-2">Payment <i
+                                class="fa-solid fa-money-bill text-success"></i></label>
+                        <br>
+                        <input type="radio" name="entry.1292886236"
+                            value="Upon receipt" id="Upon receipt" checked>
+                        <label class=" text-dark pl-3" for="Upon receipt"> <i
+                                class="fa-solid fa-truck text-warning h4 mr-1"></i>
+                            عندالاستلام </label>
+                        <br>
+                        <input type="radio" name="entry.1292886236"
+                            value="instapay" id="instapay">
+                        <label class=" pl-3" for="instapay"> <i
+                                style="color: #28a745;"
+                                class="fa-solid fa-credit-card h4  mr-1"></i>
+                            Instapay</label>
+                        <br>
+                        <textarea class="form-control d-none"
+                            name="entry.2032303182" id="Products_input_names">
+                        </textarea>
+                        <input type="submit" value="Order Now"
+                            class="form-control btn btn-info mt-3"
+                            style=" font-size: 1.4em; font-weight: bold; border-radius: 20px;"
+                            onclick="clear()">
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <!-- start footer -->
+
+        <footer id="footer"></footer>
+
+        <script src="js/navbar.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/jquery-3.7.1.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+    const form = document.getElementById('myForm');
+    const cartcontent = document.getElementById('cartcontent');
+
+    // 1. دالة مسح السلة بالكامل (للزِر العلوي)
+    function clearFullCart() {
+        if (confirm("هل أنت متأكد من رغبتك في مسح جميع محتويات السلة؟")) {
+            localStorage.setItem('cart', JSON.stringify([]));
+            updateUI();
+            alert("تم مسح السلة بنجاح");
+        }
+    }
+
+    // 2. دالة تحديث واجهة المستخدم (عشان م نكررش الكود)
+    function updateUI() {
+        if (cartcontent) cartcontent.innerHTML = "";
+        form.reset();
+        if (typeof showcart === "function") showcart();
+        if (typeof getTotal === "function") getTotal();
+        if (typeof get_cart_number === "function") get_cart_number();
+        if (typeof get_Products_input_names === "function") get_Products_input_names();
+    }
+
+form.addEventListener('submit', function(event) {
+    // 1. فحص السلة الأول
+    let cartData = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cartData.length === 0) {
+        event.preventDefault();
+        alert('السلة فارغة!');
+        return;
+    }
+
+    // 2. سيب الفورم تتبعت عادي (هتفتح في تابة جوجل)
+    
+    // 3. نفذ المسح بعد ثانيتين (الوقت اللي حددته)
+    setTimeout(function() {
+        // مسح السلة من المتصفح
+        localStorage.setItem('cart', JSON.stringify([]));
+
+        // تفريغ الحقول وتحديث الأرقام في صفحتك
+        if (cartcontent) cartcontent.innerHTML = "";
+        form.reset();
+
+        // تحديث العدادات (الدوال اللي في main.js)
+        if (typeof showcart === "function") showcart();
+        if (typeof getTotal === "function") getTotal();
+        if (typeof get_cart_number === "function") get_cart_number();
+        if (typeof get_Products_input_names === "function") get_Products_input_names();
+
+        console.log("تم مسح السلة بعد ثانيتين");
+    }, 2500); 
+});
+</script>
+    </body>
+</html>

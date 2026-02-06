@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Invoice</title>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="icon" href="imgs/unnamed.jpg" type="image/jpg">
+        <link rel="stylesheet" href="css/fatora.css">
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+        <div id="loader-wrapper">
+            <div class="loader-container">
+                <div class="neon-ring">
+                    <span></span>
+                </div>
+                <div class="loading-text">Loading...</div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="invoice-card" id="invoice">
+                        <div class="invoice-header">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 text-md-start">
+                                    <p class="mb-1"><span
+                                            class="info-label">Date:</span>
+                                        <span class="info-value"
+                                            id="dateVal"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="imgs/unnamed.jpg" alt="Logo"
+                                        class="company-logo mb-3">
+                                    <h2 class="text-primary">Sales invoice</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h6
+                                    class="text-muted text-uppercase small font-weight-bold">Customer</h6>
+                                <p class="mb-0 info-value" id="nameVal"
+                                    style="font-size: 1.2rem;"></p>
+                                <p class="mb-1" id="addressVal"></p>
+                                <p id="phoneVal" dir="ltr"
+                                    class="text-md-end"></p>
+                            </div>
+                            <div class="col-md-6 text-md-start">
+                                <h6
+                                    class="text-muted text-uppercase small font-weight-bold">Payment
+                                    Method</h6>
+                                <p class="info-value" id="paymentVal"></p>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover mt-3">
+                                <thead>
+                                    <tr class="print">
+                                        <th style="width: 5% ">#</th>
+                                        <th style="width: 15%">image</th>
+                                        <th style="width: 40%">products</th>
+                                        <th style="width: 10%"
+                                            class="text-center">qty</th>
+                                        <th style="width: 15%"
+                                            class="text-center">price</th>
+                                        <th style="width: 15%"
+                                            class="text-center">total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderTableBody"></tbody>
+                                <tfoot>
+                                    <tr
+                                        class="font-weight-bold  text-success h3">
+                                        <td colspan="3" class="text-end ">Final
+                                            Total :</td>
+                                        <td colspan="2" class="text-center"
+                                            id="grandTotal">0</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-md-12 text-center">
+                                <p class="text-muted small">شكراً لتعاملكم
+                                    معنا!</p>
+                                <button class="btn btn-outline-primary no-print"
+                                    onclick="window.print()">
+                                    <i class="fas fa-print me-2"></i> طباعة
+                                    الفاتورة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/popper.min.js"></script>
+        <script src="js/jquery-3.7.1.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/fatora.js"></script>
+
+    </body>
+</html>

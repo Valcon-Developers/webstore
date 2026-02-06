@@ -1,0 +1,49 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.invoice-card {
+    background: #fff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 40px;
+}
+.invoice-header {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.company-logo {
+    max-width: 120px;
+    border-radius: 10px;
+}
+.info-label {
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+.info-value {
+    font-weight: bold;
+    color: #333;
+}
+.table thead {
+    background-color: #343a40;
+    color: white;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.02);
+}
+.status-badge {
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+}
+@media print {
+    .no-print { display: none; }
+    .print{color:#333}
+    .invoice-card { box-shadow: none; margin: 0; padding: 20px; }
+    body { background: white; }
+}
